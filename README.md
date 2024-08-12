@@ -11,7 +11,8 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # About
 
-A super simple webserver, written in go.
+A simple http relay. Similar to a reverse http proxy, it relays all received requests
+to the configured destination.
 
 Based on: <https://marcofranssen.nl/go-webserver-with-graceful-shutdown/>
 
@@ -36,7 +37,7 @@ go build -o ./out/ ./cmd/mapprovider/
 Start server:
 
 ```bash
-./webserver -listen-addr=:80 -base-path=foo
+./webserver -listen-addr=:80 -base-path=foo -destination-addr=http://host:1234/path
 ```
 
 ## Options
@@ -46,19 +47,13 @@ environment variables or a combination of both.
 
 * listen-addr/LISTEN_ADDR - listing address, ie. ":5000"
 * base-path/BASE_PATH - base path to serve application, ie "/custom"
+* destination-addr - destination address, ie ```http://host:1234/path```
 
 Example:
 
 ```bash
 ./webserver -base-path webserver-0.1.0 -listen-addr :8080
 ```
-
-## Endpoints
-
-The following endpoints are available, assuming
-the configuration is not changed.
-
-* <http://localhost:5000>
 
 ## Testing
 
@@ -71,4 +66,4 @@ make test
 ## Question or comments
 
 Please feel free to open a new issue:
-<https://github.com/EricNeid/go-webserver/issues>
+<https://github.com/EricNeid/go-http-relay/issues>
