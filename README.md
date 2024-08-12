@@ -46,8 +46,8 @@ Application can be configure using command line arguments or
 environment variables or a combination of both.
 
 * listen-addr/LISTEN_ADDR - listing address, ie. ":5000"
+* destination-addr/DESTINATION_ADDR - destination address, ie ```http://host:1234/path```
 * base-path/BASE_PATH - base path to serve application, ie "/custom"
-* destination-addr - destination address, ie ```http://host:1234/path```
 
 Example:
 

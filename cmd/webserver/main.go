@@ -14,9 +14,10 @@ import (
 )
 
 var (
-	logFile    string = "logs/webserver.log"
-	listenAddr string = ":5000"
-	basePath   string = ""
+	logFile         string = "logs/webserver.log"
+	listenAddr      string = ":5000"
+	destinationAddr string = ""
+	basePath        string = ""
 )
 
 func main() {
@@ -24,11 +25,15 @@ func main() {
 	if value, isSet := os.LookupEnv("LISTEN_ADDR"); isSet {
 		listenAddr = value
 	}
+	if value, isSet := os.LookupEnv("DESTINATION_ADDR"); isSet {
+		destinationAddr = value
+	}
 	if value, isSet := os.LookupEnv("BASE_PATH"); isSet {
 		basePath = value
 	}
 	// cli arguments can override environment variables
 	flag.StringVar(&listenAddr, "listen-addr", listenAddr, "server listen address")
+	flag.StringVar(&destinationAddr, "destination-addr", destinationAddr, "destination address")
 	flag.StringVar(&basePath, "base-path", basePath, "base path to serve endpoints")
 	flag.Parse()
 
