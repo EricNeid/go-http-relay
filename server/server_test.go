@@ -10,7 +10,7 @@ import (
 func TestApplicationServer(t *testing.T) {
 	t.Run("Server should shutdown after being interrupted", func(t *testing.T) {
 		// arrange
-		unit := NewApplicationServer(":5001", "")
+		unit := NewApplicationServer(":5001", "", "")
 		quit := make(chan os.Signal)
 		done := make(chan bool)
 		// action shutdown

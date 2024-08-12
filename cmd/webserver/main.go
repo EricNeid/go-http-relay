@@ -51,6 +51,11 @@ func main() {
 		),
 	)
 
+	if destinationAddr == "" {
+		log.Println("main", "destination not set", "you have to set destination-addr")
+		os.Exit(1)
+	}
+
 	// prepare gracefull shutdown channel
 	done := make(chan bool, 1)
 	quit := make(chan os.Signal, 1)
@@ -58,7 +63,7 @@ func main() {
 
 	// create server
 	log.Println("main", "creating server")
-	server := server.NewApplicationServer(listenAddr, basePath)
+	server := server.NewApplicationServer(listenAddr, basePath, destinationAddr)
 	go server.GracefullShutdown(quit, done)
 
 	// start listening

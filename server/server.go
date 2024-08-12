@@ -17,11 +17,16 @@ const timeFormat string = "Mon Jan 2 15:04:05 2006"
 
 // A ApplicationServer defines parameters and companions for running an HTTP server.
 type ApplicationServer struct {
-	Webserver *http.Server
+	Webserver      *http.Server
+	destinationURL string
 }
 
 // NewApplicationServer creates a new instance of ApplicationServer.
-func NewApplicationServer(listenAddr string, basePath string) *ApplicationServer {
+func NewApplicationServer(
+	listenAddr string, 
+	basePath string, 
+	destinationURL string,
+) *ApplicationServer {
 	log.Println("NewApplicationServer", "creating server", listenAddr, basePath)
 
 	// create webserver
@@ -32,6 +37,7 @@ func NewApplicationServer(listenAddr string, basePath string) *ApplicationServer
 	router.HandleFunc(base+"/", logCall(welcome))
 
 	return &ApplicationServer{
+		destinationURL: destinationURL,
 		Webserver: &http.Server{
 			Addr:         listenAddr,
 			Handler:      router,
