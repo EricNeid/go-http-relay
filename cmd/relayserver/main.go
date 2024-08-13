@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	logFile         = "logs/webserver.log"
+	logFile         = "logs/relayserver.log"
 	listenAddr      = ":5000"
 	destinationAddr = ""
 	basePath        = ""

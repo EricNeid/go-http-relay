@@ -37,7 +37,7 @@ go build -o ./out/ ./cmd/mapprovider/
 Start server:
 
 ```bash
-./webserver -listen-addr=:80 -base-path=foo -destination-addr=http://host:1234/path
+./relayserver -listen-addr=:80 -base-path=foo -destination-addr=http://host:1234/path
 ```
 
 ## Options
@@ -52,7 +52,7 @@ environment variables or a combination of both.
 Example:
 
 ```bash
-./webserver -base-path webserver-0.1.0 -listen-addr :8080
+./relayserver -base-path relayserver-0.1.0 -listen-addr :8080
 ```
 
 ## Testing
