@@ -14,10 +14,10 @@ import (
 )
 
 var (
-	logFile         string = "logs/webserver.log"
-	listenAddr      string = ":5000"
-	destinationAddr string = ""
-	basePath        string = ""
+	logFile         = "logs/webserver.log"
+	listenAddr      = ":5000"
+	destinationAddr = ""
+	basePath        = ""
 )
 
 func main() {
@@ -46,7 +46,7 @@ func main() {
 				Filename:   logFile,
 				MaxSize:    500, // megabytes
 				MaxBackups: 3,
-				MaxAge:     28, //days
+				MaxAge:     28, // days
 			},
 		),
 	)
@@ -56,18 +56,18 @@ func main() {
 		os.Exit(1)
 	}
 
-	// prepare gracefull shutdown channel
+	// prepare graceful shutdown channel
 	done := make(chan bool, 1)
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 
 	// create server
 	log.Println("main", "creating server")
-	server := server.NewApplicationServer(listenAddr, basePath, destinationAddr)
-	go server.GracefullShutdown(quit, done)
+	srv := server.NewApplicationServer(listenAddr, basePath, destinationAddr)
+	go srv.GracefullShutdown(quit, done)
 
 	// start listening
-	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+	if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		log.Fatalln("main", "could not start listening", err)
 	}
 

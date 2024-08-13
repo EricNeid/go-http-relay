@@ -36,9 +36,7 @@ func (t *lazyMultiWriter) WriteString(s string) (n int, err error) {
 // provided writers. It is very similar to io.MultiWriter, but it does not
 // stop writing if any write operation fails. It simply continues down the list.
 func LazyMultiWriter(writers ...io.Writer) io.Writer {
-
 	io.MultiWriter()
-
 	allWriters := make([]io.Writer, 0, len(writers))
 	for _, w := range writers {
 		if mw, ok := w.(*lazyMultiWriter); ok {

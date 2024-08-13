@@ -4,6 +4,7 @@ package server
 
 import (
 	"fmt"
+	"net/http"
 	"net/http/httptest"
 	"testing"
 
@@ -12,7 +13,7 @@ import (
 
 func TestWelcome(t *testing.T) {
 	// arrange
-	request := httptest.NewRequest("GET", "/", nil)
+	request := httptest.NewRequest("GET", "/", http.NoBody)
 	responseRecorder := httptest.NewRecorder()
 	// action
 	welcome(responseRecorder, request)

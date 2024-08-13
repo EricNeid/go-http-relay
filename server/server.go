@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2021 Eric Neidhardt
 // SPDX-License-Identifier: MIT
 
-// Package server contains webserver with gracefull shutdown functions and logger.
+// Package server contains webserver with graceful shutdown functions and logger.
 package server
 
 import (
@@ -23,8 +23,8 @@ type ApplicationServer struct {
 
 // NewApplicationServer creates a new instance of ApplicationServer.
 func NewApplicationServer(
-	listenAddr string, 
-	basePath string, 
+	listenAddr string,
+	basePath string,
 	destinationURL string,
 ) *ApplicationServer {
 	log.Println("NewApplicationServer", "creating server", listenAddr, basePath)
@@ -65,15 +65,16 @@ func normalizePath(path string) string {
 // Server wait for the quit signal and cancels all current connections.
 // It pushes true to the done channel after finished shuting down.
 func (srv ApplicationServer) GracefullShutdown(quit <-chan os.Signal, done chan<- bool) {
+	log.Println("GracefulShutdown", "waiting for shutdown signal")
 	<-quit
-	log.Println("GracefullShutdown", "server is shutting down...")
+	log.Println("GracefulShutdown", "server is shutting down...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
 	srv.Webserver.SetKeepAlivesEnabled(false)
 	if err := srv.Webserver.Shutdown(ctx); err != nil {
-		log.Fatalln("GracefullShutdown", "could not gracefully shutdown the server", err)
+		log.Panicln("GracefulShutdown", "could not gracefully shutdown the server", err)
 	}
 
 	close(done)

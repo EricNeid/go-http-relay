@@ -7,9 +7,9 @@ import (
 	"strings"
 )
 
-func (server ApplicationServer) relay(w http.ResponseWriter, r *http.Request) {
+func (srv ApplicationServer) relay(w http.ResponseWriter, r *http.Request) {
 	// Step 1: rewrite URL
-	URL, _ := url.Parse(server.destinationURL)
+	URL, _ := url.Parse(srv.destinationURL)
 	r.URL.Scheme = URL.Scheme
 	r.URL.Host = URL.Host
 	r.URL.Path = singleJoiningSlash(URL.Path, r.URL.Path)
