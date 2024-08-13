@@ -8,21 +8,19 @@ LINTER_IMAGE := golangci/golangci-lint:v1.54-alpine
 .PHONY: build-windows
 build-windows:
 	docker run -it --rm \
-		-e CGO_ENABLED=0 \
 		-e GOOS=windows \
 		-e GOARCH=amd64 \
 		-w /app -v ${DIR}:/app \
-		${GO_IMAGE} \ \
-		go build -o ./out/ ./cmd/webserver/
+		${GO_IMAGE} \
+		go build -o ./out/ ./cmd/relayserver/
 .PHONY: build-linux
 build-linux:
 	docker run -it --rm \
-		-e CGO_ENABLED=0 \
 		-e GOOS=linux \
 		-e GOARCH=amd64 \
 		-w /app -v ${DIR}:/app \
-		${GO_IMAGE} \ \
-		go build -o ./out/ ./cmd/webserver/
+		${GO_IMAGE} \
+		go build -o ./out/ ./cmd/relayserver/
 
 
 .PHONY: cover

@@ -8,7 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/EricNeid/go-webserver/internal/verify"
+	"github.com/EricNeid/go-http-relay/internal/verify"
 )
 
 func TestWelcome(t *testing.T) {

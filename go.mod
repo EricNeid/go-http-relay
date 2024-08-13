@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: 2021 Eric Neidhardt
 // SPDX-License-Identifier: MIT
-module github.com/EricNeid/go-webserver
+module github.com/EricNeid/go-http-relay
 
 go 1.16
 

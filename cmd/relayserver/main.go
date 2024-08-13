@@ -9,7 +9,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/EricNeid/go-webserver/server"
+	"github.com/EricNeid/go-http-relay/server"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 

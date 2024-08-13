@@ -9,7 +9,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/EricNeid/go-webserver/internal/verify"
+	"github.com/EricNeid/go-http-relay/internal/verify"
 )
 
 func TestRelay_get200(t *testing.T) {
