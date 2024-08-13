@@ -43,7 +43,7 @@ func NewApplicationServer(
 	}
 	// configure routes
 	base := normalizePath(basePath)
-	router.HandleFunc(base, logCall(srv.relay))
+	router.HandleFunc(base+"/", logCall(srv.relay))
 	router.HandleFunc(base+"/status", logCall(welcome))
 
 	return srv
