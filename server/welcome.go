@@ -1,5 +1,6 @@
 // SPDX-FileCopyrightText: 2021 Eric Neidhardt
 // SPDX-License-Identifier: MIT
+
 package server
 
 import "net/http"
