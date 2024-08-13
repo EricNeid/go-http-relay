@@ -31,12 +31,7 @@ func NewApplicationServer(
 
 	// create webserver
 	router := http.NewServeMux()
-
-	// configure routes
-	base := normalizePath(basePath)
-	router.HandleFunc(base+"/", logCall(welcome))
-
-	return &ApplicationServer{
+	srv := &ApplicationServer{
 		destinationURL: destinationURL,
 		Webserver: &http.Server{
 			Addr:         listenAddr,
@@ -46,6 +41,12 @@ func NewApplicationServer(
 			IdleTimeout:  15 * time.Second,
 		},
 	}
+	// configure routes
+	base := normalizePath(basePath)
+	router.HandleFunc(base, logCall(srv.relay))
+	router.HandleFunc(base+"/status", logCall(welcome))
+
+	return srv
 }
 
 func normalizePath(path string) string {
